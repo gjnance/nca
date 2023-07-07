@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>National Carousel Association - <!--#echo var="WindowTitle"--></TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META name="keywords" content="carousel,National Carousel Association,carousel preservation,classic carousel,carousel figure identification"> 
+<META name="description" content="The National Carousel Association promotes conservation,appreciation,knowledge,and enjoyment of carousels and the preservation of complete wooden carousels">
+<LINK href="/NCA.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="/coolmenupro.js"></script>
+<script type="text/javascript" src="/menuitems.js"></script>
+<script type="text/javascript" src="/NCA.js"></script>
+<script type="text/javascript">
+    <!--
+        var menu = new COOLjsMenuPRO("test", MENU_ITEMS);
+        menu.initTop();
+        menu.init();
+        menu.show();
+    -->
+</script>
+
+<style type="text/css">
+	#map-canvas { height: 640; border: 2 }
+</style>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=XXX"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/USACensus/jquery.ui.map.min.js"></script>
+<script type="text/javascript">
+
+<!-- See Demo: http://jquery-ui-map.googlecode.com/svn/trunk/demos/jquery-google-maps-json.html -->
+$(function () {
+	$("#map-canvas").gmap();
+	$('#map-canvas').gmap().bind('init', function() { 
+		$.getJSON('<!--#echo var="jsonTitle" -->.json', function(data) { 
+			$.each(data.markers, function(i, marker) {
+				$('#map-canvas').gmap('addMarker', { 
+					'position': new google.maps.LatLng(marker.latitude, marker.longitude), 
+					'icon': "https://carousels.org/image/" + marker.icon + ".png",
+					'bounds': true 
+				}).click(function() {
+					$('#map-canvas').gmap('openInfoWindow', { 'content': marker.content }, this);
+				});
+			});
+		});
+	});
+});
+</script>
+</HEAD>
+
+<BODY>
+	<TABLE
+		width="100%"
+		border="0"
+		cellspacing="0"
+		cellpadding="0">
+		<tr CLASS="BrassPoleLogo">
+			<TD><IMG SRC="/images/invis.gif" ALT="Carousel Support and Information: National Carousel Association" HEIGHT="45" WIDTH="765"></TD>
+		</tr>
+		<TR>
+			<!-- A 1-line black separator -->
+			<TD HEIGHT="1" BGCOLOR="#000000"></TD>
+		</TR>
+		<TR>
+			<!-- A 1-line shader -->
+			<TD HEIGHT="1" BGCOLOR="#c0c0c0"></TD>
+		</TR>
+		<TR>
+			<TD HEIGHT="22" BGCOLOR="#ffffff">
+				<NOSCRIPT>
+					&nbsp;&nbsp;&nbsp;For browsers without JavaScript, our site map is available <A HREF="/sitemap.html">Here</A>
+				</NOSCRIPT>
+			</TD>
+		</TR>
+		<TR>
+			<TD CLASS="HighlightBorderBottomShadow"></TD>
+		</TR>
+	</TABLE>
+	<IMG SRC="/images/invis.gif" ALT="Carousel Support and Information: National Carousel Association" HEIGHT="2"><BR>
+	<TABLE CLASS="NCABody" ALIGN="CENTER" BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="100%">
+		<!-- The top rail of the display panel -->
+		<TR>
+			<TD CLASS="ContentBorderTopLeft"><IMG SRC="/images/invis.gif" WIDTH="22" ALT=""></TD>
+			<TD CLASS="ContentBorderTop">&nbsp;</TD>
+			<TD CLASS="ContentBorderTopRight"><IMG SRC="/images/invis.gif" HEIGHT="26" WIDTH="31" ALT=""></TD>
+		</TR>
+
+		<TR>
+			<TD CLASS="ContentBorderLeft"></TD>
+			<TD>
+			<DIV CLASS="LRMARGINS"><H1><!--#echo var="ContentTitle" --></H1>
+<DIV ALIGN="CENTER">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/image/classicPin.png">Classic Wood Carousels
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/image/metalPin.png">Classic Metal Carousels
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/image/newPin.png">New Wood Carousels
+</DIV>
+<!--#include virtual="/ssi/HighlightBorderBegin.html"-->
+<!-- END MAP HEADER -->
+
